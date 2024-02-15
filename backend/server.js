@@ -1,43 +1,40 @@
 import express from "express";
 import mongoose from "mongoose";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { postsRoutes } from "./routes/post.route.js";
 import { usersRoutes } from "./routes/user.route.js";
-import cors from 'cors'
-import 'dotenv/config.js'
-import path from 'path'; // Import the 'path' module
+import cors from 'cors';
+import 'dotenv/config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:5173', "https://mern-task-app-8nct.onrender.com"], // Specify the allowed origin
-  credentials: true // Allow credentials (cookies)
+  origin: ['http://localhost:5173', "https://mern-task-app-8nct.onrender.com"],
+  credentials: true
 }));
 app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
 
-app.use(express.static(path.join(__dirname, "frontend/build"))); // Adjust the path to match your frontend build output directory
+// Serve static files from the 'frontend/build' directory
+app.use(express.static(join(__dirname, "frontend/build")));
 
-// Your other route handlers and middleware
-
+// Serve the same HTML file for all routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/build", "index.html")); // Adjust the path to match your frontend build output directory
+  res.sendFile(join(__dirname, "frontend/build", "index.html"));
 });
 
 mongoose
-  .connect(process.env.MONGODB_URI, {dbName: 'blogapp'})
+  .connect(process.env.MONGODB_URI, { dbName: 'blogapp', useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log("connected to DB sucessfully");
-    app.listen(4000, () => console.log("Server is running on port 4000"));
+    console.log("Connected to MongoDB successfully");
+    const port = process.env.PORT || 4000;
+    app.listen(port, () => console.log(`Server is running on port ${port}`));
   })
   .catch((err) => {
-    console.log("Failed to connect MONGODB : ", err);
+    console.error("Failed to connect to MongoDB:", err);
   });
-
-// Serve static files from the 'build' directory (assuming your production build is located there)
-app.use(express.static('build'));
-
-// Serve the same HTML file for all routes
