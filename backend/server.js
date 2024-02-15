@@ -4,25 +4,20 @@ import { postsRoutes } from "./routes/post.route.js";
 import { usersRoutes } from "./routes/user.route.js";
 import cors from 'cors'
 import 'dotenv/config.js'
+import path from 'path'; // Import the 'path' module
 
 const app = express();
 
 app.use(express.json());
-app.options('*', cors());
-
 app.use(cors({
   origin: ['http://localhost:5173', "https://mern-task-app-8nct.onrender.com"], // Specify the allowed origin
   credentials: true // Allow credentials (cookies)
 }));
 app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
-// Serve static files from the 'build' directory (assuming your production build is located there)
-app.use(express.static('build'));
-
-
 app.get("/", (req, res) => {
   res.send("Hello World");
-})
+});
 
 mongoose
   .connect(process.env.MONGODB_URI, {dbName: 'blogapp'})
@@ -33,3 +28,11 @@ mongoose
   .catch((err) => {
     console.log("Failed to connect MONGODB : ", err);
   });
+
+// Serve static files from the 'build' directory (assuming your production build is located there)
+app.use(express.static('build'));
+
+// Serve the same HTML file for all routes
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
