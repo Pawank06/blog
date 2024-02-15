@@ -10,7 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:5173', "https://mern-task-app-8nct.onrender.com"], // Specify the allowed origin
-  methods: ["POST", "PUT", "GET", "OPTIONS", "DELETE"], // Specify the allowed HTTP methods
   credentials: true // Allow credentials (cookies)
 }));
 app.use("/api/posts", postsRoutes);
