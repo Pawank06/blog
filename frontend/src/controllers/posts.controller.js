@@ -1,8 +1,12 @@
+const PostApiKey = import.meta.env.VITE_POST_URI
+console.log(PostApiKey)
+
+
 /**************************** Get All Posts ******************************/
 
 
 const getPosts = async () => {
-  const res = await fetch("http://localhost:4000/api/posts");
+  const res = await fetch(`${PostApiKey}`);
   const data = await res.json();
 
   if (!res.ok) {
@@ -14,7 +18,7 @@ const getPosts = async () => {
 
 /**************************** Get Users Posts ******************************/
 const getUserPosts = async () => {
-  const res = await fetch("http://localhost:4000/api/posts/user", {
+  const res = await fetch(`${PostApiKey}/user`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -32,7 +36,7 @@ const getUserPosts = async () => {
 /**************************** Getting Single Post ******************************/
 
 const getSinglePost = async (id) => {
-  const res = await fetch(`http://localhost:4000/api/posts/post/${id}`);
+  const res = await fetch(`${PostApiKey}/post/${id}`);
   const data = await res.json();
 
   if (!res.ok) {
@@ -71,7 +75,7 @@ const createPost = async (title, body) => {
 
 /**************************** Create Posts ******************************/
 const deletePost = async (_id) => {
-  const res = await fetch(`http://localhost:4000/api/posts/${_id}`, {
+  const res = await fetch(`${PostApiKey}/${_id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -96,7 +100,7 @@ const updatePost = async (_id, title, body) => {
     throw Error("All feilds are requires");
   }
 
-  const res = await fetch(`http://localhost:4000/api/posts/${_id}`, {
+  const res = await fetch(`${PostApiKey}/${_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

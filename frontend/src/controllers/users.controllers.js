@@ -1,3 +1,6 @@
+const UserApiKey = import.meta.env.VITE_USER_URI
+console.log(UserApiKey)
+
 /**************************** Login User ******************************/
 
 
@@ -6,7 +9,7 @@ const loginUser = async (email, password) => {
     throw new Error("Please fill in all fields");
   }
 
-  const res = await fetch("http://localhost:4000/api/users/login", {
+  const res = await fetch(`${UserApiKey}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +40,7 @@ const registerUser = async (name, email, password, confirmPassword) => {
     throw Error("Passwords do not match");
   }
 
-  const res = await fetch("http://localhost:4000/api/users/register", {
+  const res = await fetch(`${UserApiKey}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
