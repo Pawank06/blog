@@ -30,7 +30,7 @@ const SinglePost = () => {
                 <Loader className="mr-2 h- w-6 animate-spin dark:text-white" />
             ) : (
                 posts && posts.map((post) => (
-                    <div key={post._id}>
+                    <div key={post._id} className='dark:text-white'>
                         <h1 className='p-4 text-center font-bold text-2xl mt-10'>{post.title}</h1>
                         <p className='p-4 mt-8'>{post.body}</p>
                     </div>
