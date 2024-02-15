@@ -15,6 +15,9 @@ app.use(cors({
 }));
 app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
+app.get("/", (req, res) => {
+  res.send("Hello World");
+})
 
 mongoose
   .connect(process.env.MONGODB_URI, {dbName: 'blogapp'})
