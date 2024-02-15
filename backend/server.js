@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
+
 mongoose
   .connect(process.env.MONGODB_URI, {dbName: 'blogapp'})
   .then(() => {
@@ -33,6 +37,3 @@ mongoose
 app.use(express.static('build'));
 
 // Serve the same HTML file for all routes
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
