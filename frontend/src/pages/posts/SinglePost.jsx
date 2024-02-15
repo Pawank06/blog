@@ -22,7 +22,7 @@ const SinglePost = () => {
         };
 
         fetchSinglePost();
-    }, [id, setPosts]);
+    }, []);
 
     return (
         <div>
