@@ -21,11 +21,11 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
 
 // Serve static files from the 'frontend/build' directory
-app.use(express.static(join(__dirname, "frontend/build")));
+app.use(express.static(join(__dirname, "frontend/dist")));
 
 // Serve the same HTML file for all routes
 app.get("*", (req, res) => {
-  res.sendFile(join(__dirname, "frontend/build", "index.html"));
+  res.sendFile(join(__dirname, "frontend/dist", "index.html"));
 });
 
 mongoose
