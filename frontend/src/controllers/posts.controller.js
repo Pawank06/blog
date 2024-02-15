@@ -53,7 +53,7 @@ const createPost = async (title, body) => {
     throw Error("All feilds are requires");
   }
 
-  const res = await fetch("http://localhost:4000/api/posts", {
+  const res = await fetch(`${PostApiKey}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
