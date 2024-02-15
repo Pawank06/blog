@@ -17,7 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path= "/api/posts/post/:id" element={<SinglePost />} />
+            <Route path= "/post/:id" element={<SinglePost />} />
 
             <Route element={<AuthRoutes />}>
               <Route path="dashboard" element={<Dashboard />} />

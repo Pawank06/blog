@@ -25,7 +25,7 @@ const HomePage = () => {
   }, []);
 
   const handleClick = (id) => {
-    navigate(`/api/posts/post/${id}`)
+    navigate(`/post/${id}`)
   }
 
 
