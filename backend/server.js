@@ -19,8 +19,12 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+app.use(express.static(path.join(__dirname, "frontend/dist"))); // Adjust the path to match your frontend build output directory
+
+// Your other route handlers and middleware
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/dist", "index.html")); // Adjust the path to match your frontend build output directory
 });
 
 mongoose
