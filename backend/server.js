@@ -16,6 +16,14 @@ app.use(cors({
 }));
 app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
+// Serve static files from the 'build' directory (assuming your production build is located there)
+app.use(express.static('build'));
+
+// Serve the same HTML file for all routes
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
+
 app.get("/", (req, res) => {
   res.send("Hello World");
 })
