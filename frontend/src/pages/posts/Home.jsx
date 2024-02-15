@@ -33,7 +33,7 @@ const HomePage = () => {
     <div className="mt-20 mb-20" >
     <div className="flex items-center justify-center mb-10">
         {loading && (
-        <Loader className="mr-2 h- w-6 animate-spin" />
+        <Loader className="mr-2 h- w-6 animate-spin dark:text-white" />
     )}
     </div>
 

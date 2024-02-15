@@ -45,7 +45,7 @@ const Dashboard = () => {
   return (
     <div className="mt-20 ">
       <div className="flex items-center justify-center">
-        {loading && <Loader className="mr-2 h- w-6 animate-spin" />}
+        {loading && <Loader className="mr-2 h- w-6 animate-spin dark:text-white" />}
       </div>
       {success && <Successmsg msg={success} />}
       {error && <Alertmsg msg={error} />}

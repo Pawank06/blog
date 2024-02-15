@@ -27,7 +27,7 @@ const SinglePost = () => {
     return (
         <div>
             {loading ? (
-                <Loader className="mr-2 h- w-6 animate-spin" />
+                <Loader className="mr-2 h- w-6 animate-spin dark:text-white" />
             ) : (
                 posts && posts.map((post) => (
                     <div key={post._id}>
