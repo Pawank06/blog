@@ -8,6 +8,8 @@ import 'dotenv/config.js'
 const app = express();
 
 app.use(express.json());
+app.options('*', cors());
+
 app.use(cors({
   origin: ['http://localhost:5173', "https://mern-task-app-8nct.onrender.com"], // Specify the allowed origin
   credentials: true // Allow credentials (cookies)
