@@ -1,5 +1,4 @@
 const PostApiKey = import.meta.env.VITE_POST_URI
-console.log(PostApiKey)
 
 
 /**************************** Get All Posts ******************************/

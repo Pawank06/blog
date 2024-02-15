@@ -1,5 +1,4 @@
 const UserApiKey = import.meta.env.VITE_USER_URI
-console.log(UserApiKey)
 
 /**************************** Login User ******************************/
 
